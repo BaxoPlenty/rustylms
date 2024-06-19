@@ -11,3 +11,11 @@ pub struct LoadedModel {
     pub id: String,
     pub owned_by: String,
 }
+
+#[derive(Serialize, Deserialize, Debug)]
+#[serde(rename_all = "snake_case")]
+pub enum Role {
+    System,
+    Assistant,
+    User,
+}
