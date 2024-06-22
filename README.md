@@ -7,9 +7,12 @@
 This library provides support for [**LM Studio Servers**](https://lmstudio.ai). All features are made according to the [official documentation](https://lmstudio.ai/docs/local-server).
 
 ## Feature List
-- Retrieving all models from the server
+
+-   Generating completions using chats
+-   Retrieving all models from the server
 
 ## To-Do List
-- Generating completions
-    - Supporting streams as responses
-- Creating embeddings
+
+-   ~~Generating completions~~
+    -   Supporting streams as responses
+-   Creating embeddings
