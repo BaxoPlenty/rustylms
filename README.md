@@ -16,3 +16,43 @@ This library provides support for [**LM Studio Servers**](https://lmstudio.ai). 
 -   ~~Generating completions~~
     -   Supporting streams as responses
 -   Creating embeddings
+
+## Examples
+
+### Retrieve models
+
+```rust
+use rustylms::lmsserver::LMSServer;
+
+#[tokio::main]
+async fn main() {
+    let server = LMSServer::new("http://localhost:1234");
+    let models = server.get_models().await.expect("Unable to retrieve models");
+
+    println!("{:#?}", models);
+}
+```
+
+### Generating a chat completion
+
+```rust
+use rustylms::{chat::Chat, lmsserver::LMSServer};
+
+#[tokio::main]
+async fn main() {
+    let server = LMSServer::new("http://localhost:1234");
+    let chat = Chat::new("model-name")
+        .system_prompt(
+            "You are a helpful assistant that gives information to any programming-related topic.",
+        )
+        .user_prompt("what is rust?");
+
+    let completion = chat
+        .get_completions(&server)
+        .await
+        .expect("could not get completions");
+    let message = completion.get_message().unwrap();
+
+    println!("The assistant answered: {}", message.content);
+}
+```
